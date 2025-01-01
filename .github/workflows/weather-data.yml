@@ -1,0 +1,30 @@
+name: Automate Weather Script
+
+on:
+  schedule:
+    - cron: '0 10 * * *' # Runs daily at 10am UTC
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  run-weather-script:
+    runs-on: ubuntu-latest # Use a Linux virtual machine
+    
+    steps:
+    # Check out the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Run the weather.sh script
+    - name: Execute weather.sh script
+      run: |
+        chmod +x weather.sh
+        ./weather.sh
+
+    # Commit and push new data
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "Serhii Spitsyn"
+        git config --global user.email "G00439342@atu.ie"
+        git add .
+        git commit -m "Update weather data on $(date +'%Y-%m-%d %H:%M:%S')"
+        git push
