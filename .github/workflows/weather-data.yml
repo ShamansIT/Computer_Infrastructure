@@ -13,6 +13,8 @@ jobs:
     # Checkout repository
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.PAT_TOKEN }}
 
     # Run the weather.sh script
     - name: Execute weather.sh script
