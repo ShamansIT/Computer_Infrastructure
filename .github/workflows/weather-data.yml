@@ -7,10 +7,10 @@ on:
 
 jobs:
   run-weather-script:
-    runs-on: ubuntu-latest # Use a Linux virtual machine
-    
+    runs-on: ubuntu-latest
+
     steps:
-    # Check out the repository
+    # Checkout repository
     - name: Checkout repository
       uses: actions/checkout@v3
 
@@ -22,9 +22,11 @@ jobs:
 
     # Commit and push changes
     - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         git config --global user.name "Serhii Spitsyn"
         git config --global user.email "G00439342@atu.ie"
         git add .
         git commit -m "Update weather data on $(date +'%Y-%m-%d %H:%M:%S')"
-        git push
+        git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/ShamansIT/Computer_Infrastructure.git
