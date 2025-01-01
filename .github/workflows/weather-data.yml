@@ -23,7 +23,7 @@ jobs:
     # Commit and push changes
     - name: Commit and push changes
       env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        PAT: ${{ secrets.PAT_TOKEN }}
       run: |
         git config --global user.name "Serhii Spitsyn"
         git config --global user.email "G00439342@atu.ie"
