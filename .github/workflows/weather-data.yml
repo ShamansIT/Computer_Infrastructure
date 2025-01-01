@@ -17,10 +17,10 @@ jobs:
     # Run the weather.sh script
     - name: Execute weather.sh script
       run: |
-        chmod +x weather.sh
-        ./weather.sh
+        chmod +x data/weather/weather.sh
+        ./data/weather/weather.sh
 
-    # Commit and push new data
+    # Commit and push changes
     - name: Commit and push changes
       run: |
         git config --global user.name "Serhii Spitsyn"
